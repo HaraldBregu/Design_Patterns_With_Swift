@@ -8,23 +8,23 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 ### Creational Patterns
 
-* [x] [Factory]()
-* [x] [Singleton]()
-* [x] [Abstract]()
-* [x] [Builder]()
+* [x] [Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/factory_design_pattern.playground)
+* [x] [Singleton](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
+* [x] [Abstract](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
+* [x] [Builder](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
 
 ### Behavioral Patterns
 
-* [x] [Template method]()
-* [x] [Observer]()
+* [x] [Template method](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/template_method_design_pattern.playground)
+* [x] [Observer](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/observer_design_pattern.playground)
 * [ ] [Memento]()
 * [ ] [Command]()
 
 ### Structural Patterns
 
 * [ ] [Facade]()
-* [x] [Adapter]()
-* [x] [MVC]()
+* [x] [Adapter](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/adapter_design_pattern.playground)
+* [x] [MVC](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/mvc_design_pattern.playground)
 * [ ] [Bridge]()
 * [ ] [Decorator]()
 
