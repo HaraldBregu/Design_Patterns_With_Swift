@@ -1,0 +1,51 @@
+[user]
+[http]
+[core]
+	excludesfile = /Users/haraldbregu/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/haraldbregu/.stCommitMsg
+
+#[branch "master"]
+#	remote = origin
+#	merge = refs/heads/master
+#[gitflow "branch"]
+#	master = master
+#	develop = develop
+#[gitflow "prefix"]
+#	feature = feature/
+#	release = release/
+#	hotfix = hotfix/
+#	support = support/
+#	versiontag = 
+
+
+#[http "https://github.axa.com"]
+#    proxy = mi-002336-ad:8000
+#    sslVerify = false
+
+#[http "https://github.axa.com"]
+#	proxy = http://fsg-tor1-91.altran.it/proxy_axa.pac:1080
+#	sslVerify = false
+
+[credential "https://github.com"]
+    username = harald.bregu@gmail.com
+
+[http "https://github.axa.com/"]
+    proxy = 172.20.244.85:443
+[user]
+	name = harald bregu
+	email = harald.bregu@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[remote "origin"]
+	proxy = 

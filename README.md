@@ -8,15 +8,15 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 ### Creational Patterns
 
-* [ ] [Factory]()
+* [x] [Factory]()
 * [x] [Singleton]()
-* [ ] [Abstract]()
+* [x] [Abstract]()
 * [x] [Builder]()
 
 ### Behavioral Patterns
 
-* [ ] [Template method]()
-* [ ] [Observer]()
+* [x] [Template method]()
+* [x] [Observer]()
 * [ ] [Memento]()
 * [ ] [Command]()
 
