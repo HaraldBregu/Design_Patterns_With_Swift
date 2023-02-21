@@ -15,6 +15,11 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 ### Behavioral Patterns
 
+* [ ] [Template method]()
+* [ ] [Observer]()
+* [ ] [Memento]()
+* [ ] [Command]()
+
 ### Structural Patterns
 
 * [ ] [Facade]()
