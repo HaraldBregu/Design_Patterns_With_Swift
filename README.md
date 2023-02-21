@@ -7,8 +7,22 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 ## Table of Contents
 
 ### Creational Patterns
+
+* [ ] [Factory]()
+* [ ] [Singleton]()
+* [ ] [Abstract]()
+* [ ] [Builder]()
+
 ### Behavioral Patterns
+
 ### Structural Patterns
+
+* [ ] [Facade]()
+* [ ] [Adapter]()
+* [ ] [MVC]()
+* [ ] [Bridge]()
+* [ ] [Decorator]()
+
 ### Software architecture
 
 ## Getting Started
