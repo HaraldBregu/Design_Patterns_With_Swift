@@ -9,9 +9,9 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 ### Creational Patterns
 
 * [ ] [Factory]()
-* [ ] [Singleton]()
+* [x] [Singleton]()
 * [ ] [Abstract]()
-* [ ] [Builder]()
+* [x] [Builder]()
 
 ### Behavioral Patterns
 
@@ -23,8 +23,8 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 ### Structural Patterns
 
 * [ ] [Facade]()
-* [ ] [Adapter]()
-* [ ] [MVC]()
+* [x] [Adapter]()
+* [x] [MVC]()
 * [ ] [Bridge]()
 * [ ] [Decorator]()
 
