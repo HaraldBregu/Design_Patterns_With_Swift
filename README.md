@@ -9,6 +9,9 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 ### Creational Patterns
 
+
+[Factory Method](#-factory-method)
+
 * [x] [Factory Method](#-factory-method)
 * [x] [Singleton](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
 * [x] [Abstract Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
