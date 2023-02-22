@@ -409,8 +409,8 @@ print(clonedSheep.name) // Prints "Maria"
 
 clonedSheep.name = "Dolly"
 
-print(originalSheep.name) // Prints "John"
-print(clonedSheep.name) // Prints "Jane"
+print(originalSheep.name) // Prints "Maria"
+print(clonedSheep.name) // Prints "Dolly"
 ```
 
 Behavioral
