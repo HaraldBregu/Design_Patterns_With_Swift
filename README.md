@@ -36,8 +36,10 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 ## Getting Started
 
 
-[Factory Method](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/factory_design_pattern.playground)
+Factory Method
 --------------------------
+
+[Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/factory_design_pattern.playground)
 
 The Factory Method pattern is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created. The idea behind the Factory Method pattern is to defer the creation of objects to subclasses, thus allowing for greater flexibility in the instantiation process.
 
