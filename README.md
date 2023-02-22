@@ -11,8 +11,8 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 * [x] [Factory Method](#factory-method)
 * [x] [Singleton](#singleton)
-* [x] [Abstract Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
-* [x] [Builder](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
+* [x] [Abstract Factory](#abstract-factory)
+* [x] [Builder](#builder)
 * [ ] [Monostate]()
 * [ ] [Prototype]()
 
@@ -123,5 +123,208 @@ var sameSun = Sun.shared
 print(sameSun.dimension ?? "")
 sameSun.dimension = 56
 print(sameSun.dimension ?? "")
+
+```
+
+
+Abstract Factory
+----------------
+
+[Abstract Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
+
+```swift
+
+protocol Garage {
+    func createCar() -> Car?
+    func createMotorcycle() -> Motorcycle?
+}
+
+protocol Car {
+    var type: String { get set }
+    func start()
+}
+
+protocol Motorcycle {
+    var type: String { get set }
+    func start()
+}
+
+class MotorMagazine: Garage {
+    
+    func createCar() -> Car? {
+        return SportsCar(type: "Ferrari")
+    }
+    
+    func createMotorcycle() -> Motorcycle? {
+        return SportsMotorcycle(type: "Yamaha")
+    }
+    
+}
+
+private struct SportsCar: Car {
+    var type: String
+    
+    func start() {
+        print("Starting a \(type) car")
+    }
+}
+
+private struct SportsMotorcycle: Motorcycle {
+    var type: String
+    
+    func start() {
+        print("Starting a \(type) motorcycle")
+    }
+}
+
+class MyGarage: Garage {
+    
+    func createCar() -> Car? {
+        return MyFavoriteCar(type: "Mercedes")
+    }
+    
+    func createMotorcycle() -> Motorcycle? {
+        return MyFavoriteMotorcycle(type: "Honda CBR")
+    }
+
+}
+
+private struct MyFavoriteCar: Car {
+    var type: String
+    
+    func start() {
+        print("I like to drive my \(type)")
+    }
+}
+
+private struct MyFavoriteMotorcycle: Motorcycle {
+    var type: String
+    
+    func start() {
+        print("I like to drive fast with my \(type)")
+
+    }
+}
+
+let motorMagazine = MotorMagazine()
+motorMagazine.createCar()?.start()
+motorMagazine.createMotorcycle()?.start()
+
+let myGarage = MyGarage()
+myGarage.createCar()?.start()
+myGarage.createMotorcycle()?.start()
+
+```
+
+Builder
+---------
+
+[Builder](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
+
+```swift
+
+enum HouseType {
+    case home
+    case villa
+}
+
+struct House {
+    var type: HouseType!
+    var garden: Garden!
+    var pool: Pool!
+    var plants:[Plant]!
+    
+    init() {}
+}
+
+struct Garden {
+    var length: Double
+    var width: Double
+}
+
+struct Pool {
+    var length: Double
+    var width: Double
+}
+
+enum PlantType {
+    case tree
+    case flower
+}
+
+struct Plant {
+    var type: PlantType
+}
+
+class HouseBuilder {
+    var house = House()
+    
+    static func create() -> HouseBuilder {
+        let houseBuilder = HouseBuilder()
+        
+        return houseBuilder
+    }
+    
+    func setType(type: HouseType) -> HouseBuilder {
+        house.type = type
+        
+        return self
+    }
+    
+    func add(garden: Garden) -> HouseBuilder{
+        house.garden = garden
+
+        return self
+    }
+    
+    func add(pool: Pool) -> HouseBuilder {
+        house.pool = pool
+        
+        return self
+    }
+    
+    func add(plants: [Plant]) -> HouseBuilder {
+        house.plants = plants
+        
+        return self
+    }
+    
+    func printFullHouse() -> HouseBuilder {
+        switch house.type {
+        case .home:
+            print("House type is home")
+        case .villa:
+            print("House type is villa")
+        default:
+            print("-")
+        }
+        print("garden width: \(house.garden.width) - length: \(house.garden.length)")
+        print("pool width: \(house.pool.width) - length: \(house.pool.length)")
+        print("plants count: \(house.plants.count)")
+
+        return self
+    }
+}
+
+/// Here is the builder
+HouseBuilder.create()
+    .setType(type: HouseType.villa)
+    .add(garden: Garden(length: 123, width: 450))
+    .add(pool: Pool(length: 87, width: 65))
+    .add(plants: [
+        Plant(type: PlantType.tree),
+        Plant(type: PlantType.tree),
+        Plant(type: PlantType.flower),
+    ])
+    .printFullHouse()
+
+```
+
+Example
+---------
+
+[Example](link)
+
+```swift
 
 ```
