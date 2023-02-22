@@ -1,9 +1,8 @@
 # Design Patterns in Swift
 ========================================
 
-Hello and Welcome! The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real life problems
-
-Please see [Getting Started](#getting-started) for more information on how to run the examples.
+Hello and Welcome! 
+The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real life problems.
 
 ## Table of Contents
 
@@ -414,27 +413,6 @@ print(originalSheep.name) // Prints "John"
 print(clonedSheep.name) // Prints "Jane"
 ```
 
-Example
----------
-
-[Example](link)
-
-```swift
-
-```
-Example
----------
-
-[Example](link)
-
-```swift
-
-```
-
-
-
-
-
 Behavioral
 ==========
 
@@ -445,3 +423,241 @@ Behavioral patterns provide solutions to common problems related to managing obj
 Some commonly used behavioral design patterns include the Observer pattern, which defines a one-to-many dependency between objects, the Command pattern, which encapsulates a request as an object, and the Strategy pattern, which encapsulates an algorithm in an object and allows it to be swapped out at runtime.
 
 Overall, behavioral design patterns can help to improve the organization, flexibility, and maintainability of code by providing a set of proven solutions to common problems related to object behavior.
+
+Template method
+---------
+
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/template_method_design_pattern.playground)
+
+The Template Method design pattern is a behavioral pattern that defines the skeleton of an algorithm in a base class but allows subclasses to override specific steps of the algorithm without changing its structure. It is used when multiple algorithms have similar steps but may differ in their implementation.
+
+In Swift, the Template Method pattern can be implemented using a base class that defines a common algorithm, with certain steps marked as abstract methods or placeholders to be implemented by subclasses. The concrete subclasses then provide their own implementation for these abstract methods or placeholders to customize the algorithm according to their specific needs. This allows for code reuse and consistency in algorithm structure while still allowing for flexibility and customization.
+
+```swift
+protocol Administration {
+    var postOfficeName: String { get }
+    var superMarketName: String { get }
+    func show()
+}
+
+extension Administration {
+    
+    var postOfficeName: String {
+        return "The Central Office"
+    }
+   
+    var superMarketName: String {
+        return "LIDL"
+    }
+    
+    func show() {
+        print("My city had a post office name: \(postOfficeName) and a supermarket with name: \(superMarketName)")
+    }
+
+}
+
+class City: Administration {
+
+    init() {
+        show()
+    }
+    
+}
+
+City()
+```
+
+Observer
+---------
+
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/observer_design_pattern.playground)
+
+The Observer design pattern is a behavioral pattern that allows objects to be notified and updated when a change occurs in the state of another object. It is used to establish a one-to-many relationship between objects, where changes in one object are automatically propagated to other objects that depend on it.
+
+In Swift, the Observer pattern can be implemented using a subject (also known as the observable) that maintains a list of observers (also known as listeners) and notifies them when its state changes. Observers can then respond to these notifications and update their state or perform other actions as needed. This allows for loose coupling between objects and promotes separation of concerns, making it easier to maintain and extend the codebase over time.
+
+```swift
+protocol Observer: AnyObject {
+    func update()
+}
+
+class Subject {
+    var observers = [Observer]()
+    var state: Int = 0 {
+        didSet {
+            notifyObservers()
+        }
+    }
+    
+    func attach(_ observer: Observer) {
+        observers.append(observer)
+    }
+    
+    func detach(_ observer: Observer) {
+        if let index = observers.firstIndex(where: { $0 === observer }) {
+            observers.remove(at: index)
+        }
+    }
+    
+    func notifyObservers() {
+        for observer in observers {
+            observer.update()
+        }
+    }
+}
+
+class ConcreteObserver: Observer {
+    var name: String
+    weak var subject: Subject?
+    
+    init(name: String, subject: Subject) {
+        self.name = name
+        self.subject = subject
+        subject.attach(self)
+    }
+    
+    func update() {
+        if let state = subject?.state {
+            print("\(name) received update with new state: \(state)")
+        }
+    }
+    
+    deinit {
+        subject?.detach(self)
+    }
+}
+
+let subject = Subject()
+let observer1 = ConcreteObserver(name: "Observer 1", subject: subject)
+let observer2 = ConcreteObserver(name: "Observer 2", subject: subject)
+
+subject.state = 1
+// Output:
+// Observer 1 received update with new state: 1
+// Observer 2 received update with new state: 1
+
+subject.state = 2
+// Output:
+// Observer 1 received update with new state: 2
+// Observer 2 received update with new state: 2
+```
+
+Memento
+---------
+
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/memento_design_pattern.playground)
+
+The Memento design pattern is a behavioral pattern that allows an object to capture its internal state and save it externally so that it can be restored later without violating encapsulation. It is used when an object needs to be able to save and restore its state, such as for undo/redo functionality or for checkpointing.
+
+In Swift, the Memento pattern can be implemented using three components: the Originator, the Memento, and the Caretaker. The Originator is the object whose state needs to be saved and restored. It creates and stores Memento objects that capture its state at a particular point in time. The Caretaker is responsible for managing the Memento objects, storing them in a history or undo/redo stack, and restoring the Originator's state as needed using the Memento objects. This allows for efficient and flexible state management, as well as for the separation of concerns between objects that need to save state and those that need to manage it.
+
+```swift
+protocol ActivityMemento {
+    var name: String { get }
+}
+
+class ConcreteActivityMemento: ActivityMemento {
+    
+    private(set) var state: String
+
+    init(state: String) {
+        self.state = state
+    }
+    
+    var name: String {
+        return state
+    }
+    
+}
+
+class HumanOriginator {
+    
+    private var state: String
+
+    init(state: String) {
+        self.state = state
+    }
+
+    func doSomething(_ action: String) {
+        state = action
+    }
+
+    func save() -> ActivityMemento {
+        return ConcreteActivityMemento(state: state)
+    }
+        
+    func restore(memento: ActivityMemento) {
+        guard let memento = memento as? ConcreteActivityMemento else { return }
+        self.state = memento.state
+    }
+    
+}
+
+class Caretaker {
+
+    private lazy var mementos = [ActivityMemento]()
+    
+    private var originator: HumanOriginator
+
+    init(originator: HumanOriginator) {
+        self.originator = originator
+    }
+
+    func backup() {
+        mementos.append(originator.save())
+    }
+
+    func undo() {
+
+        guard !mementos.isEmpty else { return }
+        let removedMemento = mementos.removeLast()
+        originator.restore(memento: removedMemento)
+    }
+
+    func showHistory() {
+        mementos.forEach({ print($0.name) })
+    }
+}
+
+let originator = HumanOriginator(state: "1. I took a walk")
+let caretaker = Caretaker(originator: originator)
+
+/// Saving initial state
+caretaker.backup()
+
+// Save another state
+originator.doSomething("2. I went for a run")
+caretaker.backup()
+
+// Save another state
+originator.doSomething("3. I went to play soccer/football")
+caretaker.backup()
+
+// Save another state
+originator.doSomething("4. I went to sleep")
+caretaker.backup()
+
+print("\nCaretaker: Here's the list of mementos:\n")
+caretaker.showHistory()
+
+print("\nUndo one object\n")
+caretaker.undo()
+caretaker.showHistory()
+
+print("\nUndo one object\n")
+caretaker.undo()
+caretaker.showHistory()
+
+print("\nUndo one object\n")
+caretaker.undo()
+caretaker.showHistory()
+```
+
+EXAMPLE
+---------
+
+[Playground Example]()
+
+```swift
+
+```
