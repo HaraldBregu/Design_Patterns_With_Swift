@@ -1,7 +1,6 @@
 import UIKit
 import Foundation
 
-/// SINGLETON
 final class Sun {
     static let shared = Sun()
     var dimension: Double!
@@ -9,7 +8,6 @@ final class Sun {
     private init() {}
 }
 
-/// PRINT SINGLETON
 var sun = Sun.shared
 sun.dimension = 345
 print(sun.dimension ?? "")

@@ -9,11 +9,8 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 
 ### Creational Patterns
 
-
-[Factory Method](#factory-method)
-
-* [x] [Factory Method](#-factory-method)
-* [x] [Singleton](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
+* [x] [Factory Method](#factory-method)
+* [x] [Singleton](#singleton)
 * [x] [Abstract Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
 * [x] [Builder](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
 * [ ] [Monostate]()
@@ -91,4 +88,40 @@ class MyViewController : UIViewController {
 }
 
 PlaygroundPage.current.liveView = MyViewController()
+```
+
+
+
+Singleton
+---------
+
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
+
+The Singleton pattern is a creational design pattern that ensures a class has only one instance and provides a global point of access to that instance. The Singleton pattern is useful when you need to restrict the instantiation of a class to a single object, and when you need to access that object from multiple parts of your code.
+
+In Swift, the Singleton pattern can be implemented by defining a class with a private initializer and a private static instance variable. The instance variable is initialized only once, the first time it is accessed, and is thereafter returned whenever the Singleton instance is requested. The Singleton instance can be accessed using a public static method or property.
+
+Swift's lazy initialization feature can also be used to implement the Singleton pattern, where the instance variable is declared with the lazy keyword and the initializer is only called the first time the variable is accessed.
+
+It is important to note that while the Singleton pattern can be useful in certain situations, it should be used judiciously as it can create global state which can make code difficult to reason about and maintain. It is generally recommended to use dependency injection and other techniques to manage object lifetimes whenever possible.
+
+
+```swift
+
+final class Sun {
+    static let shared = Sun()
+    var dimension: Double!
+    
+    private init() {}
+}
+
+var sun = Sun.shared
+sun.dimension = 345
+print(sun.dimension ?? "")
+
+var sameSun = Sun.shared
+print(sameSun.dimension ?? "")
+sameSun.dimension = 56
+print(sameSun.dimension ?? "")
+
 ```
