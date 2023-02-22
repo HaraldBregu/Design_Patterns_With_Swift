@@ -13,7 +13,7 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 * [x] [Singleton](#singleton)
 * [x] [Abstract Factory](#abstract-factory)
 * [x] [Builder](#builder)
-* [ ] [Monostate](#monostate)
+* [x] [Monostate](#monostate)
 * [ ] [Prototype](#prototype)
 
 ### Behavioral Patterns
@@ -132,7 +132,7 @@ print(sameSun.dimension ?? "")
 Abstract Factory
 ----------------
 
-[Abstract Factory](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
 
 The Abstract Factory design pattern is a creational pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes. This pattern promotes loose coupling between objects by allowing the client to work with abstract interfaces instead of concrete classes.
 
@@ -226,7 +226,7 @@ myGarage.createMotorcycle()?.start()
 Builder
 -------
 
-[Builder](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
 
 The Builder design pattern is a creational pattern that provides a flexible and step-by-step approach to creating complex objects. The pattern separates the construction of an object from its representation, allowing for different representations to be created using the same construction process.
 
@@ -335,7 +335,7 @@ HouseBuilder.create()
 Monostate
 ---------
 
-[Monostate](link)
+[Playground Example](link)
 
 The Monostate design pattern is a creational pattern that ensures that all instances of a class share the same state, while still allowing for multiple instances to be created. This pattern is also known as the "Singleton with a twist" pattern, as it provides similar functionality to the Singleton pattern, but with a different approach to maintaining a shared state.
 
@@ -344,13 +344,42 @@ In Swift, the Monostate pattern can be implemented using a private static variab
 The Monostate pattern can be useful in situations where multiple instances of a class need to share the same state, but where using the Singleton pattern is not appropriate. For example, the Monostate pattern can be useful in situations where the number of instances of a class needs to be dynamic, but where all instances should have the same behavior and state. However, it's important to use the pattern judiciously, as it can introduce global state and tight coupling between objects, which can make the code harder to test and maintain.
 
 ```swift
+class EuropeUnion {
+    private static var sharedState: String = "Normal activity"
+    
+    var state: String {
+        get { return EuropeUnion.sharedState }
+        set { EuropeUnion.sharedState = newValue }
+    }
+    
+    func doSomething() {
+        print("Doing something with state: \(state)")
+    }
+}
 
+let ueInstance = EuropeUnion()
+ueInstance.state = "Lockdown due to Covid-19"
+
+let ueInstance2 = EuropeUnion()
+print(ueInstance2.state)
+
+ueInstance2.doSomething()
+
+// Subclasses share the same state
+class Germany: EuropeUnion {}
+let germanyInstance = Germany()
+print(germanyInstance.state)
+
+// Subclasses share the same state
+class Italy: EuropeUnion {}
+let italyInstance = Italy()
+print(italyInstance.state)
 ```
 
 Prototype
 ---------
 
-[Prototype](link)
+[Playground Example](link)
 
 The Prototype design pattern is a creational pattern that allows for the creation of new objects by copying or cloning existing objects. This pattern can be useful in situations where creating new objects from scratch is expensive or time-consuming, or where objects need to be customized with different configurations or properties.
 
@@ -359,8 +388,36 @@ In Swift, the Prototype pattern can be implemented using a protocol that defines
 The Prototype pattern can be useful in situations where there is a need to create many similar objects, or where objects need to be customized at runtime. The pattern can help to improve the efficiency and flexibility of the code by reducing the amount of code duplication and enabling easy customization of objects.
 
 ```swift
+protocol Prototype {
+    func clone() -> Prototype
+}
 
+class Sheep: Prototype {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func clone() -> Prototype {
+        return Sheep(name: self.name)
+    }
+    
+}
+
+// Example usage
+let originalSheep = Sheep(name: "Maria")
+let clonedSheep = originalSheep.clone() as! Sheep
+
+print(originalSheep.name) // Prints "Maria"
+print(clonedSheep.name) // Prints "Maria"
+
+clonedSheep.name = "Dolly"
+
+print(originalSheep.name) // Prints "John"
+print(clonedSheep.name) // Prints "Jane"
 ```
+
 Example
 ---------
 
