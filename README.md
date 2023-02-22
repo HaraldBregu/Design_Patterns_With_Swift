@@ -14,7 +14,7 @@ Please see [Getting Started](#getting-started) for more information on how to ru
 * [x] [Abstract Factory](#abstract-factory)
 * [x] [Builder](#builder)
 * [x] [Monostate](#monostate)
-* [ ] [Prototype](#prototype)
+* [x] [Prototype](#prototype)
 
 ### Behavioral Patterns
 
@@ -52,8 +52,6 @@ The Factory Method pattern is a creational design pattern that provides an inter
 In the Factory Method pattern, a creator class provides a factory method that returns a new object of a particular type. Subclasses of the creator class can override the factory method to return objects of a different type, allowing for different object creation strategies to be used in different contexts. This makes the Factory Method pattern useful in situations where the type of object that needs to be created is determined at runtime, based on user input or other environmental factors.
 
 In Swift, the Factory Method pattern can be implemented using protocols and extensions to provide default implementations for the factory method in the superclass, and to allow subclasses to override the factory method to create objects of their choosing. The pattern can be used to create objects of any type, including custom classes, structs, and enums, and can be used in conjunction with other design patterns to provide even greater flexibility in object creation and manipulation.
-
-### Example:
 
 ```swift
 protocol LabelFactoryProtocol {
@@ -110,7 +108,6 @@ Swift's lazy initialization feature can also be used to implement the Singleton 
 It is important to note that while the Singleton pattern can be useful in certain situations, it should be used judiciously as it can create global state which can make code difficult to reason about and maintain. It is generally recommended to use dependency injection and other techniques to manage object lifetimes whenever possible.
 
 ```swift
-
 final class Sun {
     static let shared = Sun()
     var dimension: Double!
@@ -126,7 +123,6 @@ var sameSun = Sun.shared
 print(sameSun.dimension ?? "")
 sameSun.dimension = 56
 print(sameSun.dimension ?? "")
-
 ```
 
 Abstract Factory
@@ -335,7 +331,7 @@ HouseBuilder.create()
 Monostate
 ---------
 
-[Playground Example](link)
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/monostate_design_pattern.playground)
 
 The Monostate design pattern is a creational pattern that ensures that all instances of a class share the same state, while still allowing for multiple instances to be created. This pattern is also known as the "Singleton with a twist" pattern, as it provides similar functionality to the Singleton pattern, but with a different approach to maintaining a shared state.
 
@@ -379,7 +375,7 @@ print(italyInstance.state)
 Prototype
 ---------
 
-[Playground Example](link)
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/prototype_design_pattern.playground)
 
 The Prototype design pattern is a creational pattern that allows for the creation of new objects by copying or cloning existing objects. This pattern can be useful in situations where creating new objects from scratch is expensive or time-consuming, or where objects need to be customized with different configurations or properties.
 
