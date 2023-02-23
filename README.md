@@ -2,7 +2,9 @@
 ========================================
 
 Hello and Welcome! 
-The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real world examples.
+The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) +1 with real world examples.
+
+Programming design patterns are commonly used solutions to recurring problems in software development. They are tried and tested approaches that have been refined over time to help developers write efficient, reliable, and maintainable code. These patterns encapsulate best practices and provide a way for developers to structure their code in a way that is both organized and understandable. By using design patterns, developers can improve the quality of their code and reduce the time and effort required to create new software. Understanding and using programming design patterns is an essential skill for any software developer looking to create robust and scalable applications.
 
 ## Classification
 
