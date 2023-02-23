@@ -4,9 +4,9 @@
 Hello and Welcome! 
 The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real world examples.
 
-## Table of Contents
+## Classification
 
-### [Creational Patterns](#creational-patterns)
+### [Creational Patterns](#creational-design-patterns)
 
 * [x] Factory Method
 * [x] Singleton
@@ -15,7 +15,7 @@ The goal of this repository is to provide examples for each of the [23 Gang of F
 * [x] Monostate
 * [x] Prototype
 
-### [Behavioral Patterns](#behavioral-patterns)
+### [Behavioral Patterns](#behavioral-design-patterns)
 
 * [x] Template method
 * [x] Observer
@@ -29,7 +29,7 @@ The goal of this repository is to provide examples for each of the [23 Gang of F
 * [x] Strategy       
 * [x] Visitor
 
-### [Structural Patterns](#structural-patterns)
+### [Structural Patterns](#structural-design-patterns)
 
 * [x] Adapter
 * [x] Bridge
@@ -40,7 +40,7 @@ The goal of this repository is to provide examples for each of the [23 Gang of F
 * [x] Proxy
 
 
-Creational Patterns
+Creational Design Patterns
 ===================
 
 Creational design patterns are a set of design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. These patterns aim to provide solutions to common problems related to object creation and initialization, such as controlling the creation process, hiding the complexity of object creation, and providing flexible ways to create objects.
@@ -431,7 +431,7 @@ print(clonedSheep.name) // Prints "Dolly"
 ```
 
 
-Behavioral Patterns
+Behavioral Design Patterns
 ===================
 
 Behavioral design patterns are a set of design patterns that focus on communication between objects, encapsulating behavior in objects, and delegating responsibility among objects to achieve more flexible and reusable code. These patterns are concerned with the interactions between objects and how they work together to accomplish specific tasks or goals.
@@ -1293,7 +1293,7 @@ media.forEach { item in
 }
 ```
 
-Structural Patterns
+Structural Design Patterns
 ===================
 
 Structural design patterns in Swift are design patterns that focus on the composition of classes and objects to form larger structures or solve problems by identifying simple ways to realize relationships between entities. The purpose of structural patterns is to provide ways to manage the relationships between objects to create larger, more complex structures with greater ease and flexibility.
