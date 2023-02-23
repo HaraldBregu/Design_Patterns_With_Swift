@@ -17,28 +17,27 @@ The goal of this repository is to provide examples for each of the [23 Gang of F
 
 ### [Behavioral Patterns](#behavioral-patterns)
 
-* [x] [Template method](#template-method)
-* [x] [Observer](#observer)
-* [x] [Memento](#memento)
-* [ ] [Command](#command)
-* [ ] [Chain Of Responsibility](#chain-of-responsibility)
-* [ ] [Interpreter](#interpreter)   
-* [ ] [Iterator](#iterator)   
-* [ ] [Mediator](#mediator)
-* [ ] [State](#state)  
-* [ ] [Strategy](#strategy)            
-* [ ] [Visitor](#visitor)   
+* [x] Template method
+* [x] Observer
+* [x] Memento
+* [x] Command
+* [x] Chain Of Responsibility
+* [x] Interpreter
+* [x] Iterator
+* [x] Mediator
+* [x] State  
+* [x] Strategy       
+* [x] Visitor
 
-### Structural Patterns
+### [Structural Patterns](#structural-patterns)
 
-* [x] [Adapter](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/adapter_design_pattern.playground)
-* [ ] [Bridge]()
-* [ ] [Composite](#-composite)  
-* [ ] [Decorator]()
-* [ ] [Façade]()
-* [ ] [Flyweight](#flyweight)
-* [ ] [Proxy](#proxy)
-
+* [x] Adapter
+* [x] Bridge
+* [x] Composite  
+* [x] Decorator
+* [x] Façade
+* [x] Flyweight
+* [x] Proxy
 
 
 Creational Patterns
@@ -52,15 +51,15 @@ Some commonly used creational design patterns include the Singleton pattern, whi
 
 Overall, creational design patterns can help to improve the organization, maintainability, and flexibility of code by providing a set of proven solutions to common problems related to object creation and initialization.
 
-* [Factory Method](#-factory-method)
-* [Singleton](#-singleton)
-* [Abstract Factory](#-abstract-factory)
-* [Builder](#-builder)
-* [Monostate](#-monostate)
-* [Prototype](#-prototype)
+* [Factory Method](#factory-method)
+* [Singleton](#singleton)
+* [Abstract Factory](#abstract-factory)
+* [Builder](#builder)
+* [Monostate](#monostate)
+* [Prototype](#prototype)
 
-1. Factory Method
------------------
+Factory Method
+--------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/factory_design_pattern.playground)
 
@@ -111,7 +110,7 @@ class MyViewController : UIViewController {
 PlaygroundPage.current.liveView = MyViewController()
 ```
 
-2. Singleton
+Singleton
 ------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
@@ -142,7 +141,7 @@ sameSun.dimension = 56
 print(sameSun.dimension ?? "")
 ```
 
-3. Abstract Factory
+Abstract Factory
 ----------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
@@ -236,7 +235,7 @@ myGarage.createMotorcycle()?.start()
 
 ```
 
-4. Builder
+Builder
 ----------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
@@ -345,7 +344,7 @@ HouseBuilder.create()
 
 ```
 
-5. Monostate
+Monostate
 ------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/monostate_design_pattern.playground)
@@ -389,8 +388,8 @@ let italyInstance = Italy()
 print(italyInstance.state)
 ```
 
-6. Prototype
-------------
+Prototype
+---------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/prototype_design_pattern.playground)
 
@@ -431,6 +430,7 @@ print(originalSheep.name) // Prints "Maria"
 print(clonedSheep.name) // Prints "Dolly"
 ```
 
+
 Behavioral Patterns
 ===================
 
@@ -442,8 +442,20 @@ Some commonly used behavioral design patterns include the Observer pattern, whic
 
 Overall, behavioral design patterns can help to improve the organization, flexibility, and maintainability of code by providing a set of proven solutions to common problems related to object behavior.
 
+* [Template method](#template-method)
+* [Observer](#observer)
+* [Memento](#memento)
+* [Command](#command)
+* [Chain Of Responsibility](#chain-of-responsibility)
+* [Interpreter](#interpreter)   
+* [Iterator](#iterator)   
+* [Mediator](#mediator)
+* [State](#state)  
+* [Strategy](#strategy)            
+* [Visitor](#visitor)  
+
 Template method
----------
+---------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/template_method_design_pattern.playground)
 
@@ -486,7 +498,7 @@ City()
 ```
 
 Observer
----------
+--------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/observer_design_pattern.playground)
 
@@ -676,8 +688,94 @@ Command
 
 [Playground Example]()
 
-```swift
+The Command pattern is a behavioral design pattern that encapsulates a request as an object, thereby allowing for the parameterization of clients with different requests, queue or log requests, and support undoable operations.
 
+In Swift, the Command pattern can be implemented using a protocol that defines the interface for all commands, and a concrete class for each command. The concrete classes implement the interface defined by the protocol, and encapsulate the necessary information and logic to execute the command.
+
+```swift
+protocol Command {
+    func run()
+}
+
+class CarCommand: Command {
+    
+    private var payload: String
+
+    init(_ payload: String) {
+        self.payload = payload
+    }
+
+    func run() {
+        print(payload)
+    }
+}
+
+class SpaceshipCommand: Command {
+
+    private var receiver: Receiver
+
+    private var a: String
+    private var b: String
+
+    init(_ receiver: Receiver, _ a: String, _ b: String) {
+        self.receiver = receiver
+        self.a = a
+        self.b = b
+    }
+
+    func run() {
+        print("SpaceshipCommand: Complex operations should be done by a receiver object.\n")
+        receiver.doSomething(a)
+        receiver.doSomethingElse(b)
+    }
+}
+
+class Receiver {
+
+    func doSomething(_ a: String) {
+        print("Receiver: " + a)
+    }
+
+    func doSomethingElse(_ b: String) {
+        print("Receiver: " + b)
+    }
+    
+}
+
+class Invoker {
+    private var onStart: Command?
+    private var onFinish: Command?
+
+    func setOnStart(_ command: Command) {
+        onStart = command
+    }
+
+    func setOnFinish(_ command: Command) {
+        onFinish = command
+    }
+
+    func doSomethingImportant() {
+
+        print("Operations before start:")
+        onStart?.run()
+        print("\n")
+
+        print("Operations before finish:")
+        onFinish?.run()
+        print("\n")
+
+        print("Operations finished\n")
+    }
+}
+
+let invoker = Invoker()
+invoker.setOnStart(CarCommand("Turn on the engine"))
+//invoker.setOnFinish(CarCommand("Turn off the engine"))
+
+let receiver = Receiver()
+invoker.setOnFinish(SpaceshipCommand(receiver, "Turn on the engines", "Take Off"))
+
+invoker.doSomethingImportant()
 ```
 
 Chain Of Responsibility
@@ -685,7 +783,138 @@ Chain Of Responsibility
 
 [Playground Example]()
 
+The Chain of Responsibility pattern is a behavioral design pattern that allows you to pass requests along a chain of objects until one of the objects handles the request. In Swift, the Chain of Responsibility pattern is often used to manage a series of loosely-coupled objects, each of which can handle a specific type of request.
+
+
 ```swift
+protocol Handler: AnyObject {
+
+    @discardableResult
+    func setNext(handler: Handler) -> Handler
+
+    func handle(request: String) -> String?
+
+    var nextHandler: Handler? { get set }
+}
+
+extension Handler {
+
+    func setNext(handler: Handler) -> Handler {
+        self.nextHandler = handler
+        return handler
+    }
+
+    func handle(request: String) -> String? {
+        return nextHandler?.handle(request: request)
+    }
+}
+
+class DoorHandler: Handler {
+    
+    var nextHandler: Handler?
+    
+    func handle(request: String) -> String? {
+        if request == "OPEN_THE_DOOR" {
+            return "Task: " + request
+        }
+        return nextHandler?.handle(request: request)
+    }
+}
+
+
+class TVHandler: Handler {
+    
+    var nextHandler: Handler?
+    
+    func handle(request: String) -> String? {
+        if request == "TURN_ON_THE_TV" {
+            return "Task: " + request
+        }
+        return nextHandler?.handle(request: request)
+    }
+}
+
+
+
+class MonkeyHandler: Handler {
+
+    var nextHandler: Handler?
+
+    func handle(request: String) -> String? {
+        if (request == "Banana") {
+            return "Monkey: I'll eat the " + request + ".\n"
+        } else {
+            return nextHandler?.handle(request: request)
+        }
+    }
+}
+
+class SquirrelHandler: Handler {
+
+    var nextHandler: Handler?
+
+    func handle(request: String) -> String? {
+        if (request == "Nut") {
+            return "Squirrel: I'll eat the " + request + ".\n"
+        } else {
+            return nextHandler?.handle(request: request)
+        }
+    }
+}
+
+class DogHandler: Handler {
+
+    var nextHandler: Handler?
+
+    func handle(request: String) -> String? {
+        if (request == "MeatBall") {
+            return "Dog: I'll eat the " + request + ".\n"
+        } else {
+            return nextHandler?.handle(request: request)
+        }
+    }
+}
+
+
+
+class Client {
+
+    static func someClientCode(handler: Handler) {
+
+        let food = ["Nut", "Banana", "Cup of coffee"]
+
+        food.forEach { item in
+            
+            print("Client: Who wants a " + item + "?\n")
+
+            guard let result = handler.handle(request: item) else {
+                print("  " + item + " was left untouched.\n")
+                return
+            }
+
+            print("  " + result)
+        }
+        
+    }
+}
+
+let door = DoorHandler()
+let tv = TVHandler()
+door.setNext(handler: tv)
+
+let operations = ["OPEN_THE_DOOR", "TURN_ON_THE_TV"]
+
+operations.forEach { item in
+    
+    print("USER WANTS TO " + item + "?\n")
+
+    guard let result = door.handle(request: item) else {
+        print("  " + item + " operation didn't started.\n")
+        return
+    }
+
+    print("  " + result)
+}
 
 ```
 
@@ -694,8 +923,48 @@ Interpreter
 
 [Playground Example]()
 
-```swift
+The Interpreter design pattern in Swift is a behavioral pattern that is used to define a grammar for a language and provides a way to interpret sentences in that language. It allows you to build a language interpreter that can understand and execute a set of commands or expressions.
 
+```swift
+indirect enum ArithmeticExpression {
+    case number(Int)
+    case addition(ArithmeticExpression, ArithmeticExpression)
+    case subtraction(ArithmeticExpression, ArithmeticExpression)
+    case multiplication(ArithmeticExpression, ArithmeticExpression)
+    case division(ArithmeticExpression, ArithmeticExpression)
+}
+
+class ArithmeticInterpreter {
+    func interpret(_ expression: ArithmeticExpression) -> Int {
+        switch expression {
+        case .number(let value):
+            return value
+        case .addition(let left, let right):
+            return interpret(left) + interpret(right)
+        case .subtraction(let left, let right):
+            return interpret(left) - interpret(right)
+        case .multiplication(let left, let right):
+            return interpret(left) * interpret(right)
+        case .division(let left, let right):
+            return interpret(left) / interpret(right)
+        }
+    }
+}
+
+let expression = ArithmeticExpression.addition(
+    .number(2),
+    .multiplication(
+        .addition(
+            .number(3),
+            .number(2)
+        ),
+        .number(4)
+    )
+)
+
+let interpreter = ArithmeticInterpreter()
+let result = interpreter.interpret(expression)
+print(result) // Output: 26
 ```
 
 Iterator
@@ -703,8 +972,56 @@ Iterator
 
 [Playground Example]()
 
-```swift
+The Iterator design pattern in Swift is a behavioral pattern that allows you to traverse elements of a collection (such as an array or a dictionary) without exposing the underlying representation of the collection. It provides a standardized way to access the elements of a collection and perform operations on them.
 
+```swift
+protocol Iterator {
+    associatedtype Element
+    func hasNext() -> Bool
+    func next() -> Element?
+}
+
+class ArrayIterator<T>: Iterator {
+    typealias Element = T
+    
+    private var currentIndex = 0
+    private let elements: [Element]
+    
+    init(elements: [Element]) {
+        self.elements = elements
+    }
+    
+    func hasNext() -> Bool {
+        return currentIndex < elements.count
+    }
+    
+    func next() -> Element? {
+        guard hasNext() else { return nil }
+        defer { currentIndex += 1 }
+        return elements[currentIndex]
+    }
+}
+
+struct MyCollection<T> {
+    private let elements: [T]
+    
+    init(elements: [T]) {
+        self.elements = elements
+    }
+    
+    func makeIterator() -> ArrayIterator<T> {
+        return ArrayIterator(elements: elements)
+    }
+}
+
+let myCollection = MyCollection(elements: [1, 2, 3, 4, 5])
+var iterator = myCollection.makeIterator()
+
+while iterator.hasNext() {
+    if let element = iterator.next() {
+        print(element)
+    }
+}
 ```
 
 Mediator
@@ -712,8 +1029,66 @@ Mediator
 
 [Playground Example]()
 
-```swift
+The Mediator design pattern is a behavioral pattern that allows objects to communicate with each other through a mediator object instead of directly interacting with each other. The mediator object encapsulates the communication logic between objects, reducing their coupling and making it easier to maintain and modify the system. This pattern promotes loose coupling and simplifies the interaction between objects by centralizing the communication logic into a single mediator object. In Swift, this pattern can be implemented using a mediator protocol that defines the communication interface and concrete mediator objects that implement the protocol and handle the actual communication between objects.
 
+```swift
+protocol Mediator {
+    func send(message: String, sender: Colleague)
+}
+
+class ConcreteMediator: Mediator {
+    private var colleagues = [Colleague]()
+
+    func register(colleague: Colleague) {
+        colleagues.append(colleague)
+    }
+
+    func send(message: String, sender: Colleague) {
+        for colleague in colleagues where colleague !== sender {
+            colleague.receive(message: message)
+        }
+    }
+}
+
+class Colleague {
+    var mediator: Mediator
+    
+    init(mediator: Mediator) {
+        self.mediator = mediator
+    }
+
+    func send(message: String) {
+        mediator.send(message: message, sender: self)
+    }
+    
+    func receive(message: String) {
+        print("Received message: \(message)")
+    }
+}
+
+class ConcreteColleagueA: Colleague {
+    override func send(message: String) {
+        print("Sending message: \(message)")
+        super.send(message: message)
+    }
+}
+
+class ConcreteColleagueB: Colleague {
+    override func send(message: String) {
+        print("Sending message: \(message)")
+        super.send(message: message)
+    }
+}
+
+let mediator = ConcreteMediator()
+let colleagueA = ConcreteColleagueA(mediator: mediator)
+let colleagueB = ConcreteColleagueB(mediator: mediator)
+
+mediator.register(colleague: colleagueA)
+mediator.register(colleague: colleagueB)
+
+colleagueA.send(message: "Hello from colleague A!")
+colleagueB.send(message: "Hi there from colleague B!")
 ```
 
 State
@@ -721,8 +1096,52 @@ State
 
 [Playground Example]()
 
-```swift
+The State design pattern allows an object to alter its behavior when its internal state changes. It encapsulates the logic for each state into separate classes and allows the object to delegate to the current state class for behavior changes. This pattern is useful when an object's behavior needs to vary based on its internal state and when there are multiple states that the object can be in.
 
+In this pattern, the object that is being changed is known as the "context" and the different states it can be in are represented by "state" objects. The context delegates to the current state object for behavior changes, and can change its state by switching to a different state object.
+
+The State pattern promotes loose coupling between the context and the state objects, as each state encapsulates its own behavior and can be swapped out at runtime. This promotes maintainability and extensibility of the codebase.
+
+```swift
+protocol State {
+    func pressButton(context: Context)
+}
+
+class Context {
+    private var state: State
+    
+    init(state: State) {
+        self.state = state
+    }
+    
+    func setState(state: State) {
+        self.state = state
+    }
+    
+    func pressButton() {
+        self.state.pressButton(context: self)
+    }
+}
+
+class ConcreteStateA: State {
+    
+    func pressButton(context: Context) {
+        print("State is A. Pressing button changes state to B.")
+        context.setState(state: ConcreteStateB())
+    }
+}
+
+class ConcreteStateB: State {
+    
+    func pressButton(context: Context) {
+        print("State is B. Pressing button changes state back to A.")
+        context.setState(state: ConcreteStateA())
+    }
+}
+
+let context = Context(state: ConcreteStateA())
+context.pressButton() // Output: "State is A. Pressing button changes state to B."
+context.pressButton() // Output: "State is B. Pressing button changes state back to A."
 ```
 
 Strategy
@@ -730,8 +1149,68 @@ Strategy
 
 [Playground Example]()
 
-```swift
+The Strategy design pattern is a behavioral pattern that allows you to define a family of algorithms, encapsulate each one as an object, and make them interchangeable. It lets the algorithm vary independently from clients that use it.
 
+In Swift, you can define a Strategy interface or protocol that declares the methods or properties that all concrete strategies must implement. You can then create concrete strategy classes that conform to the protocol and implement the algorithm specific to that strategy. Finally, you can use the strategies in a client class or function that takes a strategy object as a parameter and uses it to execute the algorithm.
+
+This pattern is useful when you need to provide multiple variations of an algorithm, or when you want to switch between different algorithms at runtime without changing the code that uses them.
+
+```swift
+protocol Strategy {
+    func execute(_ data: [Int]) -> [Int]
+}
+
+class BubbleSortStrategy: Strategy {
+    func execute(_ data: [Int]) -> [Int] {
+        var array = data
+        for i in 0..<array.count {
+            for j in 1..<array.count - i {
+                if array[j] < array[j-1] {
+                    let temp = array[j-1]
+                    array[j-1] = array[j]
+                    array[j] = temp
+                }
+            }
+        }
+        return array
+    }
+}
+
+class QuickSortStrategy: Strategy {
+    func execute(_ data: [Int]) -> [Int] {
+        guard data.count > 1 else {
+            return data
+        }
+
+        let pivot = data[data.count / 2]
+        let less = data.filter { $0 < pivot }
+        let equal = data.filter { $0 == pivot }
+        let greater = data.filter { $0 > pivot }
+
+        return execute(less) + equal + execute(greater)
+    }
+}
+
+class Context {
+    private let strategy: Strategy
+
+    init(strategy: Strategy) {
+        self.strategy = strategy
+    }
+
+    func executeStrategy(_ data: [Int]) -> [Int] {
+        return strategy.execute(data)
+    }
+}
+
+let data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+let context1 = Context(strategy: BubbleSortStrategy())
+let sortedData1 = context1.executeStrategy(data)
+print("Sorted data using bubble sort strategy: \(sortedData1)")
+
+let context2 = Context(strategy: QuickSortStrategy())
+let sortedData2 = context2.executeStrategy(data)
+print("Sorted data using quick sort strategy: \(sortedData2)")
 ```
 
 Visitor
@@ -739,14 +1218,488 @@ Visitor
 
 [Playground Example]()
 
-```swift
+The Visitor pattern is a behavioral design pattern that allows adding new behaviors to an object structure without modifying the objects themselves. The pattern is based on the idea of having a separate object (the visitor) that is responsible for performing operations on the elements of an object structure. The visitor object can access and modify the elements of the object structure through a set of well-defined interfaces.
 
+In Swift, the Visitor pattern can be implemented using protocols to define the interfaces for the visitor and the elements of the object structure. The elements of the object structure can then implement these interfaces to allow the visitor to perform operations on them. The visitor can be implemented as a separate class that conforms to the visitor protocol, and can be passed to the elements of the object structure as a parameter to their accept() method.
+
+```swift
+protocol Visitor {
+    func visit(book: Book)
+    func visit(movie: Movie)
+}
+
+protocol Media {
+    func accept(visitor: Visitor)
+}
+
+class Book: Media {
+    let title: String
+    let author: String
+
+    init(title: String, author: String) {
+        self.title = title
+        self.author = author
+    }
+
+    func accept(visitor: Visitor) {
+        visitor.visit(book: self)
+    }
+}
+
+class Movie: Media {
+    let title: String
+    let director: String
+
+    init(title: String, director: String) {
+        self.title = title
+        self.director = director
+    }
+
+    func accept(visitor: Visitor) {
+        visitor.visit(movie: self)
+    }
+}
+
+class ShortSummaryVisitor: Visitor {
+    func visit(book: Book) {
+        print("Book: \(book.title) by \(book.author)")
+    }
+
+    func visit(movie: Movie) {
+        print("Movie: \(movie.title) directed by \(movie.director)")
+    }
+}
+
+class LongSummaryVisitor: Visitor {
+    func visit(book: Book) {
+        print("Book: \(book.title) by \(book.author). This is a great book about \(book.title).")
+    }
+
+    func visit(movie: Movie) {
+        print("Movie: \(movie.title) directed by \(movie.director). This is a great movie about \(movie.title).")
+    }
+}
+
+let media: [Media] = [
+    Book(title: "The Catcher in the Rye", author: "J.D. Salinger"),
+    Movie(title: "The Godfather", director: "Francis Ford Coppola")]
+
+let shortSummaryVisitor = ShortSummaryVisitor()
+let longSummaryVisitor = LongSummaryVisitor()
+
+media.forEach { item in
+    item.accept(visitor: shortSummaryVisitor)
+    item.accept(visitor: longSummaryVisitor)
+}
 ```
-EXAMPLE
+
+Structural Patterns
+===================
+
+Structural design patterns in Swift are design patterns that focus on the composition of classes and objects to form larger structures or solve problems by identifying simple ways to realize relationships between entities. The purpose of structural patterns is to provide ways to manage the relationships between objects to create larger, more complex structures with greater ease and flexibility.
+
+* [Adapter](#adapter)
+* [Bridge](#bridge)
+* [Composite](#composite)  
+* [Decorator](#decorator)
+* [Façade](#façade)
+* [Flyweight](#flyweight)
+* [Proxy](#proxy)
+
+Adapter
+---------
+
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/adapter_design_pattern.playground)
+
+An adapter design pattern in Swift is a structural design pattern that allows incompatible interfaces to work together. It acts as a bridge between two incompatible interfaces by translating one interface into another that the client understands.
+
+The adapter pattern involves three main components: the client, the target, and the adapter. The client is the object that needs to use the target interface, but its interface is not compatible with the target interface. The target is the object that provides the interface that the client wants to use. The adapter is the object that bridges the gap between the client and the target, by implementing the target interface and translating the requests from the client into requests that the target can understand.
+
+In Swift, the adapter pattern can be implemented using classes, protocols, and extensions. The adapter class can conform to the target protocol and provide the necessary implementation to translate the client requests into target requests. Alternatively, the adapter can be implemented using protocol extensions that add the necessary methods to the client interface to interact with the target.
+
+
+```swift
+protocol Speaking {
+    func speak()
+}
+
+protocol Woofing {
+    func woof()
+}
+
+protocol Jumping {
+    func jump()
+}
+
+
+class Human: Speaking, Jumping {
+    
+    func speak() {
+        print("Humans can speak")
+    }
+    
+    func jump() {
+        print("Humans can jump")
+    }
+    
+}
+
+class Animal: Jumping, Woofing {
+    
+    func jump() {
+        print("Animals can jump")
+    }
+    
+    func woof() {
+        print("Some animals can woof")
+    }
+    
+}
+
+let human = Human()
+human.jump()
+human.speak()
+
+let animal = Animal()
+animal.jump()
+animal.woof()
+```
+
+Bridge
 ---------
 
 [Playground Example]()
 
-```swift
+The Bridge design pattern in Swift is a structural pattern that allows decoupling of an abstraction from its implementation. It involves creating two separate hierarchies of classes, one for the abstraction and one for the implementation, and using composition to connect them.
 
+In this pattern, the Abstraction defines the high-level interface that clients interact with, and the Implementation defines the low-level implementation details. The Bridge acts as a link between them and allows the Abstraction and Implementation to vary independently.
+
+Using the Bridge pattern, you can make changes to the Abstraction or Implementation classes without affecting each other. This makes it easier to maintain and extend your codebase.
+
+An example of the Bridge pattern in Swift could be a music player application where the Abstraction represents the user interface for playing music and the Implementation represents the platform-specific audio API. By using the Bridge pattern, you can switch between different audio APIs without having to change the user interface code.
+
+```swift
+protocol DrawAPI {
+    func drawCircle(radius: Int, x: Int, y: Int)
+}
+
+class RedCircle: DrawAPI {
+    func drawCircle(radius: Int, x: Int, y: Int) {
+        print("Drawing Red Circle, radius: \(radius), x: \(x), y: \(y)")
+    }
+}
+
+protocol Shape {
+    func draw()
+}
+
+class Circle: Shape {
+    let radius: Int
+    let x: Int
+    let y: Int
+    let drawAPI: DrawAPI
+    
+    init(radius: Int, x: Int, y: Int, drawAPI: DrawAPI) {
+        self.radius = radius
+        self.x = x
+        self.y = y
+        self.drawAPI = drawAPI
+    }
+    
+    func draw() {
+        drawAPI.drawCircle(radius: radius, x: x, y: y)
+    }
+}
+
+
+let redCircle = Circle(radius: 10, x: 5, y: 6, drawAPI: RedCircle())
+redCircle.draw()
+```
+
+Composite
+---------
+
+[Playground Example]()
+
+The Composite pattern is a structural design pattern that allows you to treat a group of objects the same way as a single instance of an object. The pattern composes objects into tree-like structures to represent part-whole hierarchies. Clients can treat individual objects and compositions of objects uniformly, without knowing the difference between them.
+
+In Swift, this pattern can be useful when dealing with hierarchies of objects such as user interfaces or file systems. The Composite pattern can help to simplify code by providing a uniform interface for working with both individual objects and groups of objects.
+
+```swift
+protocol Shape {
+    func draw()
+}
+
+class Circle: Shape {
+    func draw() {
+        print("a circle")
+    }
+}
+
+class Rectangle: Shape {
+    func draw() {
+        print("a rectangle")
+    }
+}
+
+class Drawing: Shape {
+    private var shapes = [Shape]()
+    
+    func add(shape: Shape) {
+        shapes.append(shape)
+    }
+    
+    func draw() {
+        print("Drawing..")
+        for shape in shapes {
+            shape.draw()
+        }
+    }
+}
+
+let circle = Circle()
+let rectangle = Rectangle()
+let drawing = Drawing()
+
+drawing.add(shape: circle)
+drawing.add(shape: rectangle)
+drawing.draw()
+```
+
+Decorator
+---------
+
+[Playground Example]()
+
+The Decorator design pattern in Swift is a structural pattern that allows you to dynamically add new behaviors to an object without modifying its existing code. It involves creating a decorator class that wraps around the original object and adds new functionality to it by providing a new interface. The decorator class has the same interface as the original object, so it can be used in the same way. The decorator can also be chained together, allowing you to add multiple layers of behavior to the original object.
+
+In essence, the Decorator pattern provides an alternative to subclassing for extending an object's behavior. Instead of creating a new subclass for every possible combination of behaviors, you can use decorators to add those behaviors dynamically at runtime.
+
+```swift
+protocol TextFormatter {
+    func format(text: String) -> String
+}
+
+class PlainTextFormatter: TextFormatter {
+    func format(text: String) -> String {
+        return text
+    }
+}
+
+class BoldTextDecorator: TextFormatter {
+    private let wrappedFormatter: TextFormatter
+    
+    init(_ formatter: TextFormatter) {
+        self.wrappedFormatter = formatter
+    }
+    
+    func format(text: String) -> String {
+        let wrappedText = wrappedFormatter.format(text: text)
+        return "<b>\(wrappedText)</b>"
+    }
+}
+
+class ItalicTextDecorator: TextFormatter {
+    private let wrappedFormatter: TextFormatter
+    
+    init(_ formatter: TextFormatter) {
+        self.wrappedFormatter = formatter
+    }
+    
+    func format(text: String) -> String {
+        let wrappedText = wrappedFormatter.format(text: text)
+        return "<i>\(wrappedText)</i>"
+    }
+}
+
+let plainText = "Hello, world!"
+let plainFormatter = PlainTextFormatter()
+print(plainFormatter.format(text: plainText)) // Output: Hello, world!
+
+let boldFormatter = BoldTextDecorator(plainFormatter)
+print(boldFormatter.format(text: plainText)) // Output: <b>Hello, world!</b>
+
+let italicFormatter = ItalicTextDecorator(boldFormatter)
+print(italicFormatter.format(text: plainText)) // Output: <i><b>Hello, world!</b></i>
+```
+
+Façade
+---------
+
+[Playground Example]()
+
+The Facade design pattern is a structural pattern that provides a simplified interface to a complex system or set of subsystems. It is used to decouple the client code from the system's complexity and to provide an easier-to-use interface for the client. The Facade pattern is often used in APIs, libraries, and frameworks to provide a simplified, high-level interface for the users of the system.
+
+In Swift, the Facade pattern can be implemented by creating a facade class that provides a simplified interface to a set of subsystems, hiding the complexity of the underlying system. The facade class can coordinate the subsystems and provide a simplified interface for the client code to interact with.
+
+```swift
+class Car {
+    func start() {
+        print("Starting the car.")
+    }
+    
+    func stop() {
+        print("Stopping the car.")
+    }
+}
+
+class AirConditioner {
+    func turnOn() {
+        print("Turning on the air conditioner.")
+    }
+    
+    func turnOff() {
+        print("Turning off the air conditioner.")
+    }
+}
+
+class Radio {
+    func turnOn() {
+        print("Turning on the radio.")
+    }
+    
+    func turnOff() {
+        print("Turning off the radio.")
+    }
+    
+    func setStation(_ station: String) {
+        print("Setting the radio station to \(station).")
+    }
+}
+
+class CarSystem {
+    let car = Car()
+    let airConditioner = AirConditioner()
+    let radio = Radio()
+    
+    func startCar() {
+        car.start()
+        airConditioner.turnOn()
+        radio.turnOn()
+        radio.setStation("FM 102.5")
+    }
+    
+    func stopCar() {
+        radio.turnOff()
+        airConditioner.turnOff()
+        car.stop()
+    }
+}
+
+// Usage
+let carSystem = CarSystem()
+carSystem.startCar() // Starting the car. Turning on the air conditioner. Turning on the radio. Setting the radio station to FM 100.5.
+carSystem.stopCar() // Turning off the radio. Turning off the air conditioner. Stopping the
+```
+
+Flyweight
+---------
+
+[Playground Example]()
+
+The Flyweight design pattern is a structural pattern that aims to minimize memory usage by sharing data between multiple objects. This is achieved by separating the object's intrinsic state, which is unique to each object, from its extrinsic state, which is shared among objects. The intrinsic state is stored in a flyweight object, while the extrinsic state is passed as a parameter to the object's methods.
+
+In Swift, this pattern can be useful for optimizing memory usage in situations where a large number of objects need to be created with similar properties. By sharing the intrinsic state, the number of unique objects can be minimized, which reduces memory usage and improves performance.
+
+```swift
+class Circle {
+    var color: String
+    
+    init(color: String) {
+        self.color = color
+    }
+    
+    func draw(x: Int, y: Int, radius: Int) {
+        print("Drawing circle of color \(color) at (\(x),\(y)) with radius \(radius)")
+    }
+}
+
+class CircleFactory {
+    var circles = [String: Circle]()
+    
+    func getCircle(color: String) -> Circle {
+        if let circle = circles[color] {
+            return circle
+        } else {
+            let newCircle = Circle(color: color)
+            circles[color] = newCircle
+            return newCircle
+        }
+    }
+}
+
+let circleFactory = CircleFactory()
+
+let redCircle = circleFactory.getCircle(color: "red")
+redCircle.draw(x: 10, y: 10, radius: 5)
+
+let blueCircle = circleFactory.getCircle(color: "blue")
+blueCircle.draw(x: 20, y: 20, radius: 10)
+
+let anotherRedCircle = circleFactory.getCircle(color: "red")
+anotherRedCircle.draw(x: 30, y: 30, radius: 7)
+```
+
+Proxy
+---------
+
+[Playground Example]()
+
+Proxy design pattern is a structural pattern that provides a surrogate or placeholder for another object to control access to it. It allows us to create a proxy object that acts as a substitute for a real object. The proxy object intercepts all the requests made to the real object and delegates them to it as necessary, while also providing additional functionality if needed.
+
+In Swift, the proxy pattern can be used to add extra behavior or control access to objects, such as limiting the number of requests that can be made to a resource or caching expensive computations. The proxy object usually conforms to the same protocol as the real object, ensuring that it can be used interchangeably with the original object.
+
+```swift
+protocol BankAccount {
+    func deposit(amount: Double)
+    func withdraw(amount: Double)
+    var balance: Double { get }
+}
+
+class BankAccountImpl: BankAccount {
+    private var accountBalance: Double = 0
+    
+    func deposit(amount: Double) {
+        accountBalance += amount
+        print("Deposited \(amount), account balance now \(accountBalance)")
+    }
+    
+    func withdraw(amount: Double) {
+        if accountBalance >= amount {
+            accountBalance -= amount
+            print("Withdrew \(amount), account balance now \(accountBalance)")
+        } else {
+            print("Insufficient funds")
+        }
+    }
+    
+    var balance: Double {
+        return accountBalance
+    }
+}
+
+class BankAccountProxy: BankAccount {
+    private var realBankAccount: BankAccountImpl
+    
+    init() {
+        realBankAccount = BankAccountImpl()
+    }
+    
+    func deposit(amount: Double) {
+        realBankAccount.deposit(amount: amount)
+    }
+    
+    func withdraw(amount: Double) {
+        realBankAccount.withdraw(amount: amount)
+    }
+    
+    var balance: Double {
+        return realBankAccount.balance
+    }
+}
+
+let bankAccount: BankAccount = BankAccountProxy()
+bankAccount.deposit(amount: 1000.0)
+bankAccount.withdraw(amount: 500.0)
+print("Account balance: \(bankAccount.balance)")
 ```
