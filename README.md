@@ -2,33 +2,44 @@
 ========================================
 
 Hello and Welcome! 
-The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real life problems.
+The goal of this repository is to provide examples for each of the [23 Gang of Four design patterns](https://en.wikipedia.org/wiki/Design_Patterns) with real world examples.
 
 ## Table of Contents
 
 ### [Creational Patterns](#creational-patterns)
 
-* [x] [Factory Method](#factory-method)
-* [x] [Singleton](#singleton)
-* [x] [Abstract Factory](#abstract-factory)
-* [x] [Builder](#builder)
-* [x] [Monostate](#monostate)
-* [x] [Prototype](#prototype)
+* [x] Factory Method
+* [x] Singleton
+* [x] Abstract Factory
+* [x] Builder
+* [x] Monostate
+* [x] Prototype
 
-### Behavioral Patterns
+### [Behavioral Patterns](#behavioral-patterns)
 
-* [x] [Template method](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/template_method_design_pattern.playground)
-* [x] [Observer](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/observer_design_pattern.playground)
-* [x] [Memento]()
-* [ ] [Command]()
+* [x] [Template method](#template-method)
+* [x] [Observer](#observer)
+* [x] [Memento](#memento)
+* [ ] [Command](#command)
+* [ ] [Chain Of Responsibility](#chain-of-responsibility)
+* [ ] [Interpreter](#interpreter)   
+* [ ] [Iterator](#iterator)   
+* [ ] [Mediator](#mediator)
+* [ ] [State](#state)  
+* [ ] [Strategy](#strategy)            
+* [ ] [Visitor](#visitor)   
 
 ### Structural Patterns
 
-* [ ] [Facade]()
 * [x] [Adapter](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/adapter_design_pattern.playground)
-* [x] [MVC](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/mvc_design_pattern.playground)
 * [ ] [Bridge]()
+* [ ] [Composite](#-composite)  
 * [ ] [Decorator]()
+* [ ] [Façade]()
+* [ ] [Flyweight](#flyweight)
+* [ ] [Proxy](#proxy)
+
+
 
 Creational Patterns
 ===================
@@ -41,8 +52,15 @@ Some commonly used creational design patterns include the Singleton pattern, whi
 
 Overall, creational design patterns can help to improve the organization, maintainability, and flexibility of code by providing a set of proven solutions to common problems related to object creation and initialization.
 
-Factory Method
---------------
+* [Factory Method](#-factory-method)
+* [Singleton](#-singleton)
+* [Abstract Factory](#-abstract-factory)
+* [Builder](#-builder)
+* [Monostate](#-monostate)
+* [Prototype](#-prototype)
+
+1. Factory Method
+-----------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/factory_design_pattern.playground)
 
@@ -93,8 +111,8 @@ class MyViewController : UIViewController {
 PlaygroundPage.current.liveView = MyViewController()
 ```
 
-Singleton
----------
+2. Singleton
+------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/singleton_design_pattern.playground)
 
@@ -124,7 +142,7 @@ sameSun.dimension = 56
 print(sameSun.dimension ?? "")
 ```
 
-Abstract Factory
+3. Abstract Factory
 ----------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/abstract_design_pattern.playground)
@@ -218,8 +236,8 @@ myGarage.createMotorcycle()?.start()
 
 ```
 
-Builder
--------
+4. Builder
+----------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/builder_design_pattern.playground)
 
@@ -327,8 +345,8 @@ HouseBuilder.create()
 
 ```
 
-Monostate
----------
+5. Monostate
+------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/monostate_design_pattern.playground)
 
@@ -371,8 +389,8 @@ let italyInstance = Italy()
 print(italyInstance.state)
 ```
 
-Prototype
----------
+6. Prototype
+------------
 
 [Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/prototype_design_pattern.playground)
 
@@ -413,8 +431,8 @@ print(originalSheep.name) // Prints "Maria"
 print(clonedSheep.name) // Prints "Dolly"
 ```
 
-Behavioral
-==========
+Behavioral Patterns
+===================
 
 Behavioral design patterns are a set of design patterns that focus on communication between objects, encapsulating behavior in objects, and delegating responsibility among objects to achieve more flexible and reusable code. These patterns are concerned with the interactions between objects and how they work together to accomplish specific tasks or goals.
 
@@ -653,6 +671,77 @@ caretaker.undo()
 caretaker.showHistory()
 ```
 
+Command
+---------
+
+[Playground Example]()
+
+```swift
+
+```
+
+Chain Of Responsibility
+-----------------------
+
+[Playground Example]()
+
+```swift
+
+```
+
+Interpreter
+-----------
+
+[Playground Example]()
+
+```swift
+
+```
+
+Iterator
+--------
+
+[Playground Example]()
+
+```swift
+
+```
+
+Mediator
+--------
+
+[Playground Example]()
+
+```swift
+
+```
+
+State
+-----
+
+[Playground Example]()
+
+```swift
+
+```
+
+Strategy
+--------
+
+[Playground Example]()
+
+```swift
+
+```
+
+Visitor
+---------
+
+[Playground Example]()
+
+```swift
+
+```
 EXAMPLE
 ---------
 
