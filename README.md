@@ -686,7 +686,7 @@ caretaker.showHistory()
 Command
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/command_design_pattern.playground)
 
 The Command pattern is a behavioral design pattern that encapsulates a request as an object, thereby allowing for the parameterization of clients with different requests, queue or log requests, and support undoable operations.
 
@@ -781,7 +781,7 @@ invoker.doSomethingImportant()
 Chain Of Responsibility
 -----------------------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/chain_of_responsibility_design_pattern.playground)
 
 The Chain of Responsibility pattern is a behavioral design pattern that allows you to pass requests along a chain of objects until one of the objects handles the request. In Swift, the Chain of Responsibility pattern is often used to manage a series of loosely-coupled objects, each of which can handle a specific type of request.
 
@@ -921,7 +921,7 @@ operations.forEach { item in
 Interpreter
 -----------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/interpreter_design_pattern.playground)
 
 The Interpreter design pattern in Swift is a behavioral pattern that is used to define a grammar for a language and provides a way to interpret sentences in that language. It allows you to build a language interpreter that can understand and execute a set of commands or expressions.
 
@@ -970,7 +970,7 @@ print(result) // Output: 26
 Iterator
 --------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/iterator_design_pattern.playground)
 
 The Iterator design pattern in Swift is a behavioral pattern that allows you to traverse elements of a collection (such as an array or a dictionary) without exposing the underlying representation of the collection. It provides a standardized way to access the elements of a collection and perform operations on them.
 
@@ -1027,7 +1027,7 @@ while iterator.hasNext() {
 Mediator
 --------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/mediator_design_pattern.playground)
 
 The Mediator design pattern is a behavioral pattern that allows objects to communicate with each other through a mediator object instead of directly interacting with each other. The mediator object encapsulates the communication logic between objects, reducing their coupling and making it easier to maintain and modify the system. This pattern promotes loose coupling and simplifies the interaction between objects by centralizing the communication logic into a single mediator object. In Swift, this pattern can be implemented using a mediator protocol that defines the communication interface and concrete mediator objects that implement the protocol and handle the actual communication between objects.
 
@@ -1094,7 +1094,7 @@ colleagueB.send(message: "Hi there from colleague B!")
 State
 -----
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/state_design_pattern.playground)
 
 The State design pattern allows an object to alter its behavior when its internal state changes. It encapsulates the logic for each state into separate classes and allows the object to delegate to the current state class for behavior changes. This pattern is useful when an object's behavior needs to vary based on its internal state and when there are multiple states that the object can be in.
 
@@ -1147,7 +1147,7 @@ context.pressButton() // Output: "State is B. Pressing button changes state back
 Strategy
 --------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/strategy_design_pattern.playground)
 
 The Strategy design pattern is a behavioral pattern that allows you to define a family of algorithms, encapsulate each one as an object, and make them interchangeable. It lets the algorithm vary independently from clients that use it.
 
@@ -1216,7 +1216,7 @@ print("Sorted data using quick sort strategy: \(sortedData2)")
 Visitor
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/visitor_design_pattern.playground)
 
 The Visitor pattern is a behavioral design pattern that allows adding new behaviors to an object structure without modifying the objects themselves. The pattern is based on the idea of having a separate object (the visitor) that is responsible for performing operations on the elements of an object structure. The visitor object can access and modify the elements of the object structure through a set of well-defined interfaces.
 
@@ -1368,7 +1368,7 @@ animal.woof()
 Bridge
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/bridge_design_pattern.playground)
 
 The Bridge design pattern in Swift is a structural pattern that allows decoupling of an abstraction from its implementation. It involves creating two separate hierarchies of classes, one for the abstraction and one for the implementation, and using composition to connect them.
 
@@ -1419,7 +1419,7 @@ redCircle.draw()
 Composite
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/composite_design_pattern.playground)
 
 The Composite pattern is a structural design pattern that allows you to treat a group of objects the same way as a single instance of an object. The pattern composes objects into tree-like structures to represent part-whole hierarchies. Clients can treat individual objects and compositions of objects uniformly, without knowing the difference between them.
 
@@ -1469,7 +1469,7 @@ drawing.draw()
 Decorator
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/decorator_design_pattern.playground)
 
 The Decorator design pattern in Swift is a structural pattern that allows you to dynamically add new behaviors to an object without modifying its existing code. It involves creating a decorator class that wraps around the original object and adds new functionality to it by providing a new interface. The decorator class has the same interface as the original object, so it can be used in the same way. The decorator can also be chained together, allowing you to add multiple layers of behavior to the original object.
 
@@ -1526,7 +1526,7 @@ print(italicFormatter.format(text: plainText)) // Output: <i><b>Hello, world!</b
 Façade
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/facade_design_pattern.playground)
 
 The Facade design pattern is a structural pattern that provides a simplified interface to a complex system or set of subsystems. It is used to decouple the client code from the system's complexity and to provide an easier-to-use interface for the client. The Facade pattern is often used in APIs, libraries, and frameworks to provide a simplified, high-level interface for the users of the system.
 
@@ -1595,7 +1595,7 @@ carSystem.stopCar() // Turning off the radio. Turning off the air conditioner. S
 Flyweight
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/flyweight_design_pattern.playground)
 
 The Flyweight design pattern is a structural pattern that aims to minimize memory usage by sharing data between multiple objects. This is achieved by separating the object's intrinsic state, which is unique to each object, from its extrinsic state, which is shared among objects. The intrinsic state is stored in a flyweight object, while the extrinsic state is passed as a parameter to the object's methods.
 
@@ -1643,7 +1643,7 @@ anotherRedCircle.draw(x: 30, y: 30, radius: 7)
 Proxy
 ---------
 
-[Playground Example]()
+[Playground Example](https://github.com/HaraldBregu/design_patterns_in_swift/tree/main/proxy_design_pattern.playground)
 
 Proxy design pattern is a structural pattern that provides a surrogate or placeholder for another object to control access to it. It allows us to create a proxy object that acts as a substitute for a real object. The proxy object intercepts all the requests made to the real object and delegates them to it as necessary, while also providing additional functionality if needed.
 
