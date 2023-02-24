@@ -74,6 +74,7 @@ In Swift, the Factory Method pattern can be implemented using protocols and exte
 ```swift
 protocol LabelFactoryProtocol {
     func createLabel(frame: CGRect, text: String, color: UIColor) -> UILabel
+    func createButton(frame: CGRect, text: String, action: UIAction?) -> UIButton
 }
 
 
@@ -86,6 +87,14 @@ final class ContentFactory: LabelFactoryProtocol {
         label.text = text
         label.textColor = color
         return label
+    }
+    
+    func createButton(frame: CGRect, text: String, action: UIAction?) -> UIButton {
+        let label = UIButton(type: .roundedRect, primaryAction: action)
+        label.frame = frame
+        label.setTitle(text, for: .normal)
+        return label
+
     }
 }
 
@@ -102,9 +111,15 @@ class MyViewController : UIViewController {
             text: "Label Created With Factory Design Pattern",
             color: .black)
 
+        let button = contentFactory.createButton(
+            frame: CGRect(x: 50, y: 290, width: 320, height: 100),
+            text: "Button created with factory",
+            action: nil)
+        
         view.backgroundColor = .white
         view.addSubview(label)
-    
+        view.addSubview(button)
+
         self.view = view
     }
 }
