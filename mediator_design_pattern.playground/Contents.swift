@@ -1,59 +1,79 @@
 import UIKit
 
-protocol Mediator {
-    func send(message: String, sender: Colleague)
-}
 
-class ConcreteMediator: Mediator {
-    private var colleagues = [Colleague]()
-
-    func register(colleague: Colleague) {
-        colleagues.append(colleague)
-    }
-
-    func send(message: String, sender: Colleague) {
-        for colleague in colleagues where colleague !== sender {
-            colleague.receive(message: message)
-        }
-    }
-}
-
-class Colleague {
-    var mediator: Mediator
+class Person {
+    var name: String
     
-    init(mediator: Mediator) {
+    init(name: String) {
+        self.name = name
+    }
+}
+
+protocol Mediation {
+    func completeTransaction(seller: Seller)
+}
+
+class PersonMediator: Person, Mediation {
+    private var counterParts = [Person]()
+    
+    var offer: Double = 0.0
+    var acceptedOffer: Bool = false
+    
+    func register(counterpart: Person) {
+        counterParts.append(counterpart)
+    }
+    
+    func completeTransaction(seller: Seller) {
+        print(seller.message)
+    }
+}
+
+
+class CounterPart: Person {
+    var mediator: PersonMediator
+    
+    init(name: String, mediator: PersonMediator) {
         self.mediator = mediator
+        super.init(name: name)
     }
+}
 
-    func send(message: String) {
-        mediator.send(message: message, sender: self)
+class Buyer: CounterPart {
+    override init(name: String, mediator: PersonMediator) {
+        super.init(name: name, mediator: mediator)
     }
     
-    func receive(message: String) {
-        print("Received message: \(message)")
+    func sendOffer(_ offer: Double) {
+        print("I am sending an offer of \(offer) dollars")
+        mediator.offer = offer
     }
 }
 
-class ConcreteColleagueA: Colleague {
-    override func send(message: String) {
-        print("Sending message: \(message)")
-        super.send(message: message)
+class Seller: CounterPart {
+    override init(name: String, mediator: PersonMediator) {
+        super.init(name: name, mediator: mediator)
+    }
+     
+    var message: String {
+        if mediator.offer > 190_000 {
+            return "I will accept your offer of \(mediator.offer) dollars"
+        }
+        return "I will not accept your offer of \(mediator.offer) dollars"
     }
 }
 
-class ConcreteColleagueB: Colleague {
-    override func send(message: String) {
-        print("Sending message: \(message)")
-        super.send(message: message)
-    }
-}
+var mediator = PersonMediator(name: "Agent Smith")
 
-let mediator = ConcreteMediator()
-let colleagueA = ConcreteColleagueA(mediator: mediator)
-let colleagueB = ConcreteColleagueB(mediator: mediator)
+var buyer = Buyer(name: "Marina Mitchell", mediator: mediator)
+mediator.register(counterpart: buyer)
 
-mediator.register(colleague: colleagueA)
-mediator.register(colleague: colleagueB)
+var seller = Seller(name: "Dillan Grimes", mediator: mediator)
+mediator.register(counterpart: seller)
 
-colleagueA.send(message: "Hello from colleague A!")
-colleagueB.send(message: "Hi there from colleague B!")
+buyer.sendOffer(100_000)
+
+mediator.completeTransaction(seller: seller)
+
+buyer.sendOffer(200_000)
+
+mediator.completeTransaction(seller: seller)
